@@ -7,10 +7,176 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.css">
   </head>
   <body>
-    <h1>Hello, world!</h1>
-
+    <div class="container">
+        <div class="header"><h1>Sandwich Maker</h1></div>
+        <div class="container" id="menu">
+          <div class="row">
+            <div class="col-6">
+              <h3>Bread</h3>
+              <div class="form-check">
+                <label for="Wheat" class="form-check-label">
+                  <input type="radio" class="form-check-input" name="bread">
+                  Wheat
+                </label>
+              </div>
+              <div class="form-check">
+                <label for="Rye" class="form-check-label">
+                  <input type="radio" class="form-check-input" name="bread">
+                  Rye
+                </label>
+              </div>
+              <div class="form-check">
+                <label for="White" class="form-check-label">
+                  <input type="radio" class="form-check-input" name="bread">
+                  White
+                </label>
+              </div>
+            </div>
+            <div class="col-6">
+              <h3>Meat</h3>
+              <div class="form-check">
+                <label for="Ham" class="form-check-label">
+                  <input type="checkbox" class="form-check-input">
+                  Ham
+                </label>
+              </div>
+              <div class="form-check">
+                <label for="Turkey" class="form-check-label">
+                  <input type="checkbox" class="form-check-input">
+                  Turkey
+                </label>
+              </div>
+              <div class="form-check">
+                <label for="Chicken" class="form-check-label">
+                  <input type="checkbox" class="form-check-input">
+                  Chicken
+                </label>
+              </div>
+              <div class="form-check">
+                <label for="Salami" class="form-check-label">
+                  <input type="checkbox" class="form-check-input">
+                  Salami
+                </label>
+              </div>
+              <div class="form-check">
+                <label for="Pork" class="form-check-label">
+                  <input type="checkbox" class="form-check-input">
+                  Pork
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <h3>Cheese</h3>
+              <div class="form-check">
+                <label for="American" class="form-check-label">
+                  <input type="checkbox" class="form-check-input">
+                  American
+                </label>
+              </div>
+              <div class="form-check">
+                <label for="Swiss" class="form-check-label">
+                  <input type="checkbox" class="form-check-input">
+                  Swiss
+                </label>
+              </div>
+              <div class="form-check">
+                <label for="Cheddar" class="form-check-label">
+                  <input type="checkbox" class="form-check-input">
+                  Cheddar
+                </label>
+              </div>
+              <div class="form-check">
+                <label for="Mozzarella" class="form-check-label">
+                  <input type="checkbox" class="form-check-input">
+                  Mozzarella
+                </label>
+              </div>
+              <div class="form-check">
+                <label for="Pepper-Jack" class="form-check-label">
+                  <input type="checkbox" class="form-check-input">
+                  Pepper Jack
+                </label>
+              </div>
+            </div>
+            <div class="col-6">
+              <h3>Veggies</h3>
+              <div class="form-check">
+                <label for="Lettuce" class="form-check-label">
+                  <input type="checkbox" class="form-check-input">
+                  Lettuce
+                </label>
+              </div>
+              <div class="form-check">
+                <label for="Tomato" class="form-check-label">
+                  <input type="checkbox" class="form-check-input">
+                  Tomato
+                </label>
+              </div>
+              <div class="form-check">
+                <label for="Onion" class="form-check-label">
+                  <input type="checkbox" class="form-check-input">
+                  Onion
+                </label>
+              </div>
+              <div class="form-check">
+                <label for="Pickle" class="form-check-label">
+                  <input type="checkbox" class="form-check-input">
+                  Pickle
+                </label>
+              </div>
+              <div class="form-check">
+                <label for="Peppers" class="form-check-label">
+                  <input type="checkbox" class="form-check-input">
+                  Peppers
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <h3>Condiments</h3>
+              <div class="form-check">
+                <label for="Mayo" class="form-check-label">
+                  <input type="checkbox" class="form-check-input">
+                  Mayo
+                </label>
+              </div>
+              <div class="form-check">
+                <label for="Mustard" class="form-check-label">
+                  <input type="checkbox" class="form-check-input">
+                  Mustard
+                </label>
+              </div>
+              <div class="form-check">
+                <label for="Vinegar" class="form-check-label">
+                  <input type="checkbox" class="form-check-input">
+                  Vinegar
+                </label>
+              </div>
+              <div class="form-check">
+                <label for="Oil" class="form-check-label">
+                  <input type="checkbox" class="form-check-input">
+                  Oil
+                </label>
+              </div>
+              <div class="form-check">
+                <label for="Hot-Sauce" class="form-check-label">
+                  <input type="checkbox" class="form-check-input">
+                  Hot Sauce
+                </label>
+              </div>
+            </div>
+            <div class="col-6" id="total">
+              <h3>Your Sandwich:</h3>
+            </div>
+          </div>
+        </div>
+      </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
