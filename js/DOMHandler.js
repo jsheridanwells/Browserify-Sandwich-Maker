@@ -2,21 +2,28 @@
 let Ajax = require('./ajax.js');
 
 function printCategories(data) {
+	let row;
 	data.Categories.forEach((category, index) => {
-		let row = $('<div></div>').addClass('row');
-		console.log("firing 1");
 		if (index % 2 === 0) {
-			console.log("firing 2");
+			row = $('<div></div>').addClass('row');
 			let content = `
-				<div class="col-6" id="category--${category.id}">
+				<div class="col-md-6" id="category--${category.id}">
 					<h3>${category.name}</h3>
 				</div>
 			`;
 			row.append(content);
+			if (index === data.Categories.length - 1) {
+				content = `
+					<div class="col-md-6" id="total">
+						<h3>Your Sandwich:<h3>
+					</div>
+				`;
+				row.append(content);
+				$('#menu').append(row);
+			}
 		} else {
-			console.log("firing 3");
 			let content = `
-				<div class="col-6" id="category--${category.id}">
+				<div class="col-md-6" id="category--${category.id}">
 					<h3>${category.name}</h3>
 				</div>
 			`;
@@ -26,26 +33,28 @@ function printCategories(data) {
 	});
 }
 
-// function printItems(data, inputType) {
-// 	//determine input type
-// 	//create content string w/ label and input
-// 	let content = '';
-// 	data.items.forEach((item)=>{
-// 		let itemNames = Object.keys(item);
-// 		content += `
-// 			<label for="" class="form-check-label">
-// 				<input type="${inputType}" class="form-check-input" name="">
-// 				${item}
-// 		`;
-// 	});
-// 	//append to row
-// 	//append to #menu
-// }
+function printItems(data) {
+	data.Items.forEach((item, index)=>{
+		let items = Object.keys(item);
+		items.forEach((item)=>{
+			let content = `
+				<div class="form-check">
+					<label for="${item}" class="form-check-label">
+						<input type="checkbox" name="${item}">
+						${item}
+					</label>
+				</div>
+			`;
+			$('#category--' + index).append(content);
+		});
+	});
+}
 
 $(window.document).ready(function(){
 	Ajax.loadData().then(function(data){
 		//make array of item names
 		console.log("show me the ", data);
 		printCategories(data);
+		printItems(data);
 	});
 });
