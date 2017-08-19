@@ -1,23 +1,51 @@
 'use strict';
-let Bread = require('./bread.js');
+let Ajax = require('./ajax.js');
 
-//given a function for calling data and a form type, creates list on page
-let DOM = {
-	loadList: (func, type) => {
-		let data = Object.keys(func());
-		let content = '';
-		data.forEach((item)=>{
-			content += `
-				<div class="form-check">
-                	<label for="Wheat" class="form-check-label">
-                  		<input type="${type}" class="form-check-input" name="bread">
-              			${item}
-	                </label>
-	            </div>
+function printCategories(data) {
+	data.Categories.forEach((category, index) => {
+		let row = $('<div></div>').addClass('row');
+		console.log("firing 1");
+		if (index % 2 === 0) {
+			console.log("firing 2");
+			let content = `
+				<div class="col-6" id="category--${category.id}">
+					<h3>${category.name}</h3>
+				</div>
 			`;
-		});
-		$('#menu').append(content);
-	}
-};
+			row.append(content);
+		} else {
+			console.log("firing 3");
+			let content = `
+				<div class="col-6" id="category--${category.id}">
+					<h3>${category.name}</h3>
+				</div>
+			`;
+			row.append(content);
+			$('#menu').append(row);
+		}
+	});
+}
 
-DOM.loadList(Bread.getPrices, 'radio');
+// function printItems(data, inputType) {
+// 	//determine input type
+// 	//create content string w/ label and input
+// 	let content = '';
+// 	data.items.forEach((item)=>{
+// 		let itemNames = Object.keys(item);
+// 		content += `
+// 			<label for="" class="form-check-label">
+// 				<input type="${inputType}" class="form-check-input" name="">
+// 				${item}
+// 		`;
+// 	});
+// 	//append to row
+// 	//append to #menu
+// }
+
+$(window.document).ready(function(){
+	Ajax.loadData().then(function(data){
+		//make array of item names
+		console.log("show me the ", data);
+		printCategories(data);
+	});
+});

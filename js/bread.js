@@ -1,14 +1,13 @@
 'use strict';
+let Ajax = require('./ajax.js');
+
 let Bread = {};
 
-Bread.prices = {
-	Wheat: 1,
-	Rye: 1,
-	White: 1
-};
 
-Bread.getPrices = () => {
-	return Bread.prices;
-};
+//STATUS:  data loads, need to figure out how to route data to write to
+//the DOM and add listeners
 
-module.exports = Bread;
+
+Ajax.loadData().then(function(data){
+	Bread = data.Bread;
+});
