@@ -1,6 +1,8 @@
 'use strict';
-//load JSON file
+let Bread = require('./bread.js');
 
+
+//load JSON file
 let Ajax = {
 	loadData: () => {
 		return new Promise(function(resolve, reject){
@@ -8,6 +10,7 @@ let Ajax = {
 				url: 'sandwich.json'
 			}).done(function(data){
 				resolve(data);
+				Bread.loadPrices(data);
 			});
 		});
 	}

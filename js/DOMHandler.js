@@ -1,6 +1,7 @@
 'use strict';
 let Ajax = require('./ajax.js');
 
+//prints categories from JSON to the DOM
 function printCategories(data) {
 	let row;
 	data.Categories.forEach((category, index) => {
@@ -33,6 +34,7 @@ function printCategories(data) {
 	});
 }
 
+//items from JSON to each category
 function printItems(data) {
 	data.Items.forEach((item, index)=>{
 		let items = Object.keys(item);
@@ -50,11 +52,14 @@ function printItems(data) {
 	});
 }
 
+//loadJSON data and calls printing to DOM functions
 $(window.document).ready(function(){
 	Ajax.loadData().then(function(data){
-		//make array of item names
-		console.log("show me the ", data);
 		printCategories(data);
 		printItems(data);
 	});
 });
+
+
+
+
