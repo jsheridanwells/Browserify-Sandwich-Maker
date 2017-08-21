@@ -1,4 +1,17 @@
 'use strict';
-var Bread = require('./bread.js');
+let Bread = require('./bread.js');
 
-console.log("Bread?", Bread.getPrices());
+let prices = [];
+
+function getPrices(data) {
+	prices.push(data);
+}
+
+getPrices(Bread.getPrices());
+
+console.log("prices in sandwich", prices);
+$(window).click(function(e){
+	if (e.target.hasAttribute('name')) {
+		console.log("e target name", e.target.name);
+	}
+});

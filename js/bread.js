@@ -1,14 +1,17 @@
 'use strict';
+let Ajax = require('./ajax.js');
+
+let BreadPrices = {};
+
 let Bread = {};
 
-Bread.prices = {
-	Wheat: 1,
-	Rye: 1,
-	White: 1
+Bread.loadPrices = (data) => {
+	BreadPrices = data.Items[0];
+	Bread.getPrices();
 };
 
 Bread.getPrices = () => {
-	return Bread.prices;
+	return BreadPrices;
 };
 
 module.exports = Bread;
