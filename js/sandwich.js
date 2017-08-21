@@ -36,7 +36,6 @@ let Sandwich = {
 		_itemList.push(key);
 		//4.2 add key/value (price) to total price
 		_totalPrice += data[key];
-		console.log(_itemList, _totalPrice);
 	},
 	//5. export _itemList
 	sendItems: () => {
@@ -52,7 +51,6 @@ let Sandwich = {
 	clearItems: () => {
 		_itemList = [];
 		_totalPrice = 0;
-		console.log(_itemList, _totalPrice);
 	}
 
 };
