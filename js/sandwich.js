@@ -1,17 +1,26 @@
 'use strict';
-let Bread = require('./bread.js');
 
-let prices = [];
+let _itemList = [];
+let _totalPrice = 0;
 
-function getPrices(data) {
-	prices.push(data);
+//3. if class name is /.../
+function getObject(e) {
+	let $functionSelector = $(e.target).parentsUntil('.row');
+	let idNum = $functionSelector[2].id;
+	//3.1 return corresponding function
 }
 
-getPrices(Bread.getPrices());
+//4. search for value as key
+function addItem(data) {
+	//4.1 add key to item list
+	//4.2 add key/value (price) to total price
+}
 
-console.log("prices in sandwich", prices);
-$(window).click(function(e){
-	if (e.target.hasAttribute('name')) {
-		console.log("e target name", e.target.name);
+//1. listen for a click
+$(window).click((e)=> {
+//2. if e.target is an input button
+	if (e.target.localName === 'input') {
+		getObject(e);
+		//2.1 get e.target.value //2.2 get greatgrandparent class name
 	}
-});
+	});
