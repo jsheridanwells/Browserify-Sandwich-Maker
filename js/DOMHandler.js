@@ -26,7 +26,10 @@ function printCategories(data) {
 					</div>`;
 				$($row).append(frame);
 				$('#menu').append($row);
-				$('#clear').click(Sandwich.clearItems);
+				$('#clear').click(()=>{
+					Sandwich.clearItems();
+					printTotal();
+				});
 			}
 		} else {
 			$($row).append(frame);
@@ -55,14 +58,15 @@ function printItems(data, categoryIndex, type) {
 //prints selected items and total price to the DOM
 
 function printTotal() {
-		console.log("print total firing");
 		let items = Sandwich.sendItems();
 		let total = Sandwich.sendTotal();
-		let frame = `<p>${items[items.length - 1]}</p>`;
-		$('#total-price').remove();
-		let totalPrice = `<h4 id="total-price">Your Total: ${total.toFixed(2)}</h4>`;
-		$(totalPrice).insertBefore('#clear');
-		$(frame).insertBefore('#total-price');
+		if (items.length !== 0) {
+			let frame = `<p>${items[items.length - 1]}</p>`;
+			$('#total-price').remove();
+			let totalPrice = `<h4 id="total-price">Your Total: ${total.toFixed(2)}</h4>`;
+			$(totalPrice).insertBefore('#clear');
+			$(frame).insertBefore('#total-price');
+		}
 }
 
 
