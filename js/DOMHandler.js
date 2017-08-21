@@ -35,7 +35,7 @@ function printCategories(data) {
 	});
 }
 
-// prints items from JSON to each category
+// prints items from objects to each category
 function printItems(data, categoryIndex, type) {
 	let items = Object.keys(data);
 	let prices = Object.values(data);
@@ -52,6 +52,25 @@ function printItems(data, categoryIndex, type) {
 	});
 }
 
+//prints selected items and total price to the DOM
+let Handler = {
+	printTotal: () => {
+		console.log("print total firing");
+		let frame = '';
+		let items = Sandwich.sendItems();
+		let total = Sandwich.sendTotal();
+		items.forEach(item => {
+			frame += `<p>${item}</p>`;
+		});
+		$('#total-price').remove();
+		let totalPrice = `<h4 id="total-price">Your Total: ${total.toFixed(2)}</h4>`;
+		$(totalPrice).insertBefore('#clear');
+		$(frame).insertBefore('#total-price');
+
+
+	}
+};
+
 //load data and calls printing to DOM functions
 $(window).ready(function() {
 	printCategories(Categories.exportCategories());
@@ -60,5 +79,18 @@ $(window).ready(function() {
 	printItems(Cheese.exportData(), 2, 'checkbox');
 	printItems(Veggies.exportData(), 3, 'checkbox');
 	printItems(Condiments.exportData(), 4, 'checkbox');
+	Handler.printTotal();
 });
 
+//1. listen for a click
+$(window).click((e)=> {
+//2. if e.target is an input button
+	if (e.target.localName === 'input') {
+		let data = Sandwich.getObject(e);
+		Sandwich.addItem(data, e.target.value);
+		//print total price & items to the DOM
+		Handler.printTotal();
+	}
+});
+
+module.exports = Handler;
