@@ -5,6 +5,7 @@ let Meat = require('./meat.js');
 let Cheese = require('./cheese.js');
 let Veggies = require('./veggies.js');
 let Condiments = require('./condiments.js');
+let Sandwich = require('./sandwich.js');
 
 //prints categories from JSON to the DOM
 function printCategories(data) {
@@ -18,9 +19,14 @@ function printCategories(data) {
 		if (index % 2 === 0) {
 			$($row).append(frame);
 			if (index === data.length -1) {
-				frame = '<div class="col-6" id="total"><h3>Your Sandwich:</h3></div>';
+				frame = `
+					<div class="col-6" id="total">
+						<h3>Your Sandwich:</h3>
+						<button id="clear">Clear</button>
+					</div>`;
 				$($row).append(frame);
 				$('#menu').append($row);
+				$('#clear').click(Sandwich.clearItems);
 			}
 		} else {
 			$($row).append(frame);
@@ -55,3 +61,4 @@ $(window).ready(function() {
 	printItems(Veggies.exportData(), 3, 'checkbox');
 	printItems(Condiments.exportData(), 4, 'checkbox');
 });
+
