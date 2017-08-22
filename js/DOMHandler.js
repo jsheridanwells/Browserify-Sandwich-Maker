@@ -22,12 +22,14 @@ function printCategories(data) {
 				frame = `
 					<div class="col-6" id="total">
 						<h3>Your Sandwich:</h3>
+						<ul id="item-list"></ul>
 						<button id="clear">Clear</button>
 					</div>`;
 				$($row).append(frame);
 				$('#menu').append($row);
 				$('#clear').click(()=>{
 					Sandwich.clearItems();
+					$('#item-list').html('');
 					printTotal();
 				});
 			}
@@ -60,13 +62,16 @@ function printItems(data, categoryIndex, type) {
 function printTotal() {
 		let items = Sandwich.sendItems();
 		let total = Sandwich.sendTotal();
+		let frame = '';
 		if (items.length !== 0) {
-			let frame = `<p>${items[items.length - 1]}</p>`;
-			$('#total-price').remove();
-			let totalPrice = `<h4 id="total-price">Your Total: ${total.toFixed(2)}</h4>`;
-			$(totalPrice).insertBefore('#clear');
-			$(frame).insertBefore('#total-price');
+			frame = `<li class="item">${items[items.length - 1]}</li>`;
+		} else {
+			frame = '';
 		}
+		$('#total-price').remove();
+		let totalPrice = `<h4 id="total-price">Your Total: ${total.toFixed(2)}</h4>`;
+		$('#item-list').append(frame);
+		$(totalPrice).insertBefore('#clear');
 }
 
 
