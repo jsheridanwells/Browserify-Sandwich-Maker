@@ -36,6 +36,15 @@ let Sandwich = {
 		_itemList.push(key);
 		//4.2 add key/value (price) to total price
 		_totalPrice += data[key];
+
+	},
+	//4.1 remove item from new array
+	removeItem: (data, key) => {
+		let deletedItem = _itemList.indexOf(key);
+		_itemList.splice(deletedItem, 1);
+		_totalPrice -= data[key];
+
+
 	},
 	//5. export _itemList
 	sendItems: () => {

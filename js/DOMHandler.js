@@ -7,6 +7,8 @@ let Veggies = require('./veggies.js');
 let Condiments = require('./condiments.js');
 let Sandwich = require('./sandwich.js');
 
+let Handler = {};
+
 //prints categories from JSON to the DOM
 function printCategories(data) {
 	var $row = $('<div class="row"></div>');
@@ -20,9 +22,10 @@ function printCategories(data) {
 			$($row).append(frame);
 			if (index === data.length -1) {
 				frame = `
-					<div class="col-6" id="total">
+					<div class="col-6">
 						<h3>Your Sandwich:</h3>
 						<ul id="item-list"></ul>
+						<h4>Your Total: $<span id="total"></span></h4>
 						<button id="clear">Clear</button>
 					</div>`;
 				$($row).append(frame);
@@ -30,7 +33,7 @@ function printCategories(data) {
 				$('#clear').click(()=>{
 					Sandwich.clearItems();
 					$('#item-list').html('');
-					printTotal();
+					Handler.printTotal();
 				});
 			}
 		} else {
@@ -49,7 +52,7 @@ function printItems(data, categoryIndex, type) {
 			<div class="${type}">
 			  <label>
 			    <input type="${type}" value="${item}" name="sandwich-item">
-			    ${item}: ${prices[i].toFixed(2)}</1>
+			    <span>${item}</span>: ${prices[i].toFixed(2)}
 			  </label>
 			</div>
 		`;
@@ -59,21 +62,16 @@ function printItems(data, categoryIndex, type) {
 
 //prints selected items and total price to the DOM
 
-function printTotal() {
-		let items = Sandwich.sendItems();
-		let total = Sandwich.sendTotal();
-		let frame = '';
-		if (items.length !== 0) {
-			frame = `<li class="item">${items[items.length - 1]}</li>`;
-		} else {
-			frame = '';
-		}
-		$('#total-price').remove();
-		let totalPrice = `<h4 id="total-price">Your Total: ${total.toFixed(2)}</h4>`;
-		$('#item-list').append(frame);
-		$(totalPrice).insertBefore('#clear');
-}
-
+Handler.printTotal = () => {
+	let itemsArr = Sandwich.sendItems();
+	let total = Sandwich.sendTotal();
+	let listItems = '';
+	itemsArr.forEach(item => {
+		listItems += `<li class="sandwich-item">${item}</li>`;
+	});
+	$('#item-list').html(listItems);
+	$('#total').html(total.toFixed(2));
+};
 
 //load data and calls printing to DOM functions
 $(window).ready(function() {
@@ -89,9 +87,16 @@ $(window).ready(function() {
 $(window).click((e)=> {
 //2. if e.target is an input button
 	if (e.target.localName === 'input') {
-		let data = Sandwich.getObject(e);
-		Sandwich.addItem(data, e.target.value);
-		//print total price & items to the DOM
-		printTotal();
+		if (e.target.checked) {
+			let data = Sandwich.getObject(e);
+			Sandwich.addItem(data, e.target.value);
+			Handler.printTotal();
+		} else {
+			let data = Sandwich.getObject(e);
+			Sandwich.removeItem(data, $(e.target).next().text());
+			Handler.printTotal();
+		}
 	}
 });
+
+module.exports = Handler;
