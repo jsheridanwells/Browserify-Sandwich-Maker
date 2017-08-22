@@ -60,9 +60,6 @@ let Sandwich = {
 	clearItems: () => {
 		_itemList = [];
 		_totalPrice = 0;
-		$('input').each(() => {
-	        this.checked = false;
-		});
 	}
 
 };
