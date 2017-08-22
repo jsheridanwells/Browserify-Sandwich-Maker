@@ -26,15 +26,9 @@ function printCategories(data) {
 						<h3>Your Sandwich:</h3>
 						<ul id="item-list"></ul>
 						<h4>Your Total: $<span id="total"></span></h4>
-						<button id="clear">Clear</button>
 					</div>`;
 				$($row).append(frame);
 				$('#menu').append($row);
-				$('#clear').click(()=>{
-					Sandwich.clearItems();
-					$('#item-list').html('');
-					Handler.printTotal();
-				});
 			}
 		} else {
 			$($row).append(frame);

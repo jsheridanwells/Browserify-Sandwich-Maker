@@ -54,12 +54,6 @@ let Sandwich = {
 	//6. export _totalPrice
 	sendTotal: () => {
 		return _totalPrice;
-	},
-
-	//8. clear items and price
-	clearItems: () => {
-		_itemList = [];
-		_totalPrice = 0;
 	}
 
 };
